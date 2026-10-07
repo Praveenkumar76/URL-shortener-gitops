@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/Praveenkumar76/URL-shortener.git'
+    repoURL: 'https://github.com/Praveenkumar76/URL-shortener-gitops.git'
     targetRevision: main
     path: k8s
   destination:
