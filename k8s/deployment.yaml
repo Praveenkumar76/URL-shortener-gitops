@@ -15,7 +15,7 @@ spec:
         app: url-shortener
       annotations:
         prometheus.io/scrape: "true"
-        prometheus.io/port: "8080"
+        prometheus.io/port: "8090"
         prometheus.io/path: "/metrics"
     spec:
       securityContext:
@@ -24,10 +24,10 @@ spec:
         fsGroup: 10001
       containers:
         - name: application
-          image: myregistry.com/url-shortener:latest
+          image: praveenkumarr46/url-shortener:10-c1ac8b8
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8080
+            - containerPort: 8090
           envFrom:
             - configMapRef:
                 name: url-shortener-config
@@ -47,7 +47,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8080
+              port: 8090
             initialDelaySeconds: 10
             periodSeconds: 15
             timeoutSeconds: 2
@@ -55,7 +55,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /readyz
-              port: 8080
+              port: 8090
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 2
