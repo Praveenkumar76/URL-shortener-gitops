@@ -27,7 +27,7 @@ spec:
           image: praveenkumarr46/url-shortener:10-c1ac8b8
           imagePullPolicy: IfNotPresent
           ports:
-            - containerPort: 8090
+            - containerPort: 8080
           envFrom:
             - configMapRef:
                 name: url-shortener-config
@@ -47,7 +47,7 @@ spec:
           livenessProbe:
             httpGet:
               path: /healthz
-              port: 8090
+              port: 8080
             initialDelaySeconds: 10
             periodSeconds: 15
             timeoutSeconds: 2
@@ -55,7 +55,7 @@ spec:
           readinessProbe:
             httpGet:
               path: /readyz
-              port: 8090
+              port: 8080
             initialDelaySeconds: 5
             periodSeconds: 10
             timeoutSeconds: 2
