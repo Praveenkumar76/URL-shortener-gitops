@@ -24,7 +24,7 @@ spec:
         fsGroup: 10001
       containers:
         - name: application
-          image: praveenkumarr46/url-shortener:12-ac13fbe
+          image: praveenkumarr46/url-shortener:13-8fc74b4
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
