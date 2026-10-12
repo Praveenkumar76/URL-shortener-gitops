@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: analytics-service-config
+  labels:
+    app: analytics-service
+data:
+  PORT: "8080"
+  NOTIFICATION_SERVICE_URL: "http://notification-service.url-shortener-prod.svc.cluster.local"
