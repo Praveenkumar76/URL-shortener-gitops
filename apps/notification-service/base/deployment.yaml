@@ -22,7 +22,7 @@ spec:
         runAsUser: 10001
       containers:
         - name: notification-service
-          image: praveenkumarr46/notification-service:1-f76c1aa
+          image: praveenkumarr46/notification-service:3-dde4473
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
