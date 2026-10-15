@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: url-shortener-staging
+
+labels:
+  - pairs:
+      environment: staging
+
+resources:
+  - ../../url-shortener
+
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: url-shortener-config
+      data:
+        BASE_URL: http://url-shortener-svc.url-shortener-staging.svc.cluster.local
+        LOG_LEVEL: debug
+    target:
+      kind: ConfigMap
+      name: url-shortener-config
+  - patch: |-
+      apiVersion: v1
+      kind: Secret
+      metadata:
+        name: url-shortener-secret
+      data:
+        # Isolated staging sqlite database: /app/data/staging-url-shortener.db
+        # Base64: L2FwcC9kYXRhL3N0YWdpbmctdXJsLXNob3J0ZW5lci5kYg==
+        # Never reuses production database secret (/app/data/url-shortener.db)
+        database-url: L2FwcC9kYXRhL3N0YWdpbmctdXJsLXNob3J0ZW5lci5kYg==
+    target:
+      kind: Secret
+      name: url-shortener-secret

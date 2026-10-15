@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: url-shortener-staging
+
+labels:
+  - pairs:
+      environment: staging
+
+resources:
+  - ../../notification-service
+
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: notification-service-config
+      data:
+        LOG_LEVEL: debug
+    target:
+      kind: ConfigMap
+      name: notification-service-config
