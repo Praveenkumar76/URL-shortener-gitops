@@ -8,7 +8,7 @@ labels:
       environment: staging
 
 resources:
-  - ../../url-shortener
+  - ../../base
 
 patches:
   - patch: |-
@@ -28,9 +28,6 @@ patches:
       metadata:
         name: url-shortener-secret
       data:
-        # Isolated staging sqlite database: /app/data/staging-url-shortener.db
-        # Base64: L2FwcC9kYXRhL3N0YWdpbmctdXJsLXNob3J0ZW5lci5kYg==
-        # Never reuses production database secret (/app/data/url-shortener.db)
         database-url: L2FwcC9kYXRhL3N0YWdpbmctdXJsLXNob3J0ZW5lci5kYg==
     target:
       kind: Secret

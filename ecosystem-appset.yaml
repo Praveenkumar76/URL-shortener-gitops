@@ -1,0 +1,39 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: ecosystem-appset
+  namespace: argocd
+  labels:
+    app.kubernetes.io/managed-by: a2a-gitops
+spec:
+  generators:
+    - matrix:
+        generators:
+          - list:
+              elements:
+                - env: staging
+                - env: prod
+          - git:
+              repoURL: https://github.com/Praveenkumar76/URL-shortener-gitops.git
+              revision: main
+              directories:
+                - path: apps/*
+  template:
+    metadata:
+      name: '{{path.basename}}-{{env}}'
+      namespace: argocd
+      labels:
+        environment: '{{env}}'
+        service: '{{path.basename}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/Praveenkumar76/URL-shortener-gitops.git
+        targetRevision: main
+        path: '{{path}}/overlays/{{env}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'url-shortener-{{env}}'
+      syncPolicy:
+        syncOptions:
+          - CreateNamespace=true
