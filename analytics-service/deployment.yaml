@@ -22,7 +22,8 @@ spec:
         runAsUser: 10001
       containers:
         - name: analytics-service
-          image: praveenkumarr46/analytics-service:2-0b6125a
+          image: 
+            praveenkumarr46/url-shortener@sha256:abcd1234ef567890abcd1234ef567890abcd1234ef567890abcd1234ef567890
           imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 8080
