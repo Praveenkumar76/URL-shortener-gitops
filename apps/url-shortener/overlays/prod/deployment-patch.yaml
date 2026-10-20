@@ -1,0 +1,10 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: url-shortener
+spec:
+  template:
+    spec:
+      containers:
+        - name: application
+          image: praveenkumarr46/url-shortener:18-309a3cd

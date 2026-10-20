@@ -9,3 +9,6 @@ labels:
 
 resources:
   - ../../base
+
+patches:
+  - path: deployment-patch.yaml

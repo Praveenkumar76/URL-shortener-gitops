@@ -11,6 +11,7 @@ resources:
   - ../../base
 
 patches:
+  - path: deployment-patch.yaml
   - patch: |-
       apiVersion: v1
       kind: ConfigMap
