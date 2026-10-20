@@ -7,4 +7,4 @@ spec:
     spec:
       containers:
         - name: application
-          image: praveenkumarr46/url-shortener:demo-failure-20261020
+          image: praveenkumarr46/url-shortener:18-309a3cd
